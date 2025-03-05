@@ -6,6 +6,23 @@ A simple, rebust and elegant way to answer question with code generation and exe
 ![code-agent-workflow-graph](Langgraph_code_agent.png?raw=true "code-agent")
 
 
+### When to use Code Agent?
+
+***Choose Simplicity and Robustness***
+Ideal for users seeking simplicity in setup and use while still requiring robust solutions. 
+
+***Continue Adapt Changing Requirement***
+When pre-determined workflows fall short due to evolving business needs, code agents offer the flexibility to adapt without constant reprogramming 
+
+***Improved Efficiency in Complex Workflows***
+Traditional multi-step agents can become overly complex with numerous conditional statements (if/else). Code agents mitigate this by dynamically generating code, thus handling complexity more cleanly and efficiently.
+
+***Simplify Task Automation with Multiple Tools***
+For tasks that require interaction with multiple tools or services, code agents excel by automating the process of tool configuration and execution through generated code, reducing manual intervention.
+
+***Make Intelligent Decision-Making***
+By leveraging large language models (LLMs), code agents incorporate an intelligent decision-making layer, allowing them to choose which actions to execute and how, beyond simple rule-based automation
+
 ### Sample
 
 ##### User Question:
@@ -110,6 +127,19 @@ if __name__ == '__main__':
 
 ### Contribution
 Open for contribution
+
+### When to avoid Code Agent?
+
+***Fixed Predetermined Workflow***
+When your workflow is already set and does not require flexibility or changes, a Code Agent may not be necessary.
+Processes Requiring Human In the loop
+If your workflow involves steps where human decision-making or approvals are essential, relying on a Code Agent might not be suitable.
+
+***Tight Control on Tool or API Calling Usage***
+In scenarios where there are limitations on how tools or APIs can be utilized within your system—such as restricted access or regulatory constraints—a Code Agent may face challenges in automating these calls effectively.
+
+***Static Workflow and Decision Making***
+If the logic and decision-making processes in your workflow remain unchanged over time, employing a dynamic agent like a Code Agent becomes unnecessary.
 
 
 ### Inspiration

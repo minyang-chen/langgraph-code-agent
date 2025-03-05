@@ -40,12 +40,12 @@ PARAM_MODEL_PRESENCE_PENALTY=0
 
 # ## Google OpenAI Model
 # ## --------------------
-api_key = "" # Replace with your secret name
-client = OpenAI(
-    base_url='https://generativelanguage.googleapis.com/v1beta/openai/',
-    api_key=api_key,
-)
-PARAM_MODEL_NAME="gemini-2.0-flash-exp"
+# api_key = "" # Replace with your secret name
+# client = OpenAI(
+#     base_url='https://generativelanguage.googleapis.com/v1beta/openai/',
+#     api_key=api_key,
+# )
+# PARAM_MODEL_NAME="gemini-2.0-flash-exp"
 
 # the maximum number of iterations for the workflow. If the code fails the tests, the workflow will retry up to this limit.
 PARAM_MAX_RETRY_ITERATIONS=3
@@ -243,17 +243,11 @@ def import_check(state: GraphState):
     imports = code_solution.imports
     code = code_solution.code    
     
-    #print("BEFORE:\n", code)
     # import libraries    
     import subprocess
     import pkg_resources
     import sys
-    ## -----------------------
-    ## Remove SPECIAL COMMENTS
-    ## -----------------------
-    ## Remove GOOGLE_MAPS_API_KEY text
-    #text_to_remove = "Replace 'YOUR_GOOGLE_MAPS_API_KEY' with your actual Google Maps API key."
-    #code = re.sub(re.escape(text_to_remove), '', code)
+
     # Extract libraries from import statements
     imports = re.findall(
         r'^\s*(?:import|from) ([\w\d_]+)', code, re.MULTILINE)
@@ -579,90 +573,4 @@ print("```",ascii_graph,"```\n")
 ## 
 # png_graph = app.get_graph(xray=1).draw_png(output_file_path="./codeagent_graph.png")
 # print("```",png_graph,"```\n")
-
-# from IPython.display import Image, display
-# display(Image(app.get_graph(xray=1).draw_mermaid_png()))
-
-#########################
-## Testing the Workflow
-# =======================
-
-# ## Example 3: Filling Missing Values
-# ## ------------------------------------------
-# question = "How do I fill missing values in a DataFrame with the mean of the column?"
-# #prompt = f"Generate Python code to {question}\n. If you need to use any external libraries, include a comment at the top of the code listing the required pip installations."
-# solution = app.invoke({"messages": [HumanMessage(content=question)], "iterations": 0, "error": ""})
-
-# #question = "How do I merge two DataFrames based on a common column?"
-# #question = "Get latest Microsoft Stock Price from Yahoo Finance using yfinance library."
-# #question = "How do I fill missing values in a DataFrame with the mean of the column?"
-# #question = "how to calculate the sum of all elements in a list using python?"
-# #question = "list all the files in current directory"
-# question = "Create an itinerary outlining all the essential details for a trip from city Orangeville to Niagara Falls."
-# solution = app.invoke({"messages": [{"role": "user", "content": question}], "iterations": 0, "error": ""})
-
-# # Print the final solution
-# result = solution["generation"]
-# print("======================================")
-# print("<User Question>")
-# print(question)
-# print("--------------------------------------")
-# print("<Coding Task>")
-# print(result.task)
-# #print(f"Code Imports:\n{result.imports}")
-# print("--------------------------------------")
-# print("<Final Code>")
-# print("```",result.code.strip(),"\n```")
-# print("--------------------------------------")
-# print(f"<Final Result>")
-# print("--------------------------------------")
-# print(result.result)
-# print("======================================")
-# print(f"<Has error> {result.error}")
-
-# We test the workflow by asking it to generate solutions for three different Pandas-related questions. The final solution is printed, including the description, imports, and code block.
-
-## Example 1: Grouping and Calculating Mean
-## ------------------------------------------
-# This example demonstrates how to group a DataFrame by a specific column and calculate the mean of another column. Grouping and aggregation are common operations in data analysis, and Pandas provides a straightforward way to perform these tasks using the groupby method.
-
-# question = "How do I group a DataFrame by a column and calculate the mean of another column?"
-# solution = app.invoke({"messages": [HumanMessage(content=question)], "iterations": 0, "error": ""})
-
-# # # Print the final solution
-# # print("======================================")
-# # result = solution["generation"]
-# # print(f"Task:\n{result.description}\n")
-# # print(f"Imports:\n{result.imports}\n")
-# # print(f"Code:\n{result.code}\n")
-# # print(f"Result:\n{result.result}\n")
-# # print(f"Error:\n{result.error}\n")
-# print("======================================")
-# # Print response messages
-# iterations = solution["iterations"]
-# print("Iterations:", iterations)
-# for message in solution["messages"]:
-#     if isinstance(message,HumanMessage):
-#         print("<User>")
-#         print(message.content)        
-#         print("</User>")        
-#     if isinstance(message,AIMessage):
-#         print("<AI>")        
-#         print(message.content)        
-#         print("</AI>")                        
-
-# ## Example 2: Merging DataFrames
-# ## ------------------------------------------
-# # This example shows how to merge two DataFrames based on a common column. Merging is a fundamental operation when working with multiple datasets, and Pandas' merge function allows for flexible joining of DataFrames using different types of joins (e.g., inner, outer, left, right).
-
-# question = "How do I merge two DataFrames based on a common column?"
-# solution = app.invoke({"messages": [HumanMessage(content=question)], "iterations": 0, "error": ""})
-
-# # Print the final solution
-# result = solution["generation"]
-# print(f"Task:\n{result.description}\n")
-# print(f"Imports:\n{result.imports}\n")
-# print(f"Code:\n{result.code}\n")
-# print(f"Result:\n{result.result}\n")
-# print(f"Error:\n{result.error}\n")
 
