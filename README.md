@@ -23,21 +23,48 @@ For tasks that require interaction with multiple tools or services, code agents 
 ***Make Intelligent Decision-Making***
 By leveraging large language models (LLMs), code agents incorporate an intelligent decision-making layer, allowing them to choose which actions to execute and how, beyond simple rule-based automation
 
-### Sample
+#### Sample-1
+Question:  ***how many r in strawberry?***
 
-##### User Question:
 ```
-Get latest Microsoft Stock Price from Yahoo Finance using yfinance library
+Coding Task:
+Count the number of times the letter 'r' appears in the word 'strawberry'.
+--------------------------------------
+Generated Code:
+--------------------------------------
+def main():
+    word = "strawberry"
+    count = 0
+    # Iterate through the word and count the occurrences of 'r'
+    for char in word:
+        if char == 'r':
+            count += 1
+    print(f"The letter 'r' appears {count} times in the word 'strawberry'.")
+
+if __name__ == "__main__":
+    main() 
+--------------------------------------
+<Final Answer>
+--------------------------------------
+The letter 'r' appears 3 times in the word 'strawberry'.
+======================================
+<Has error> no
+```
+
+### Sample-2
+
+
+User Question: ***Get latest Microsoft Stock Price from Yahoo Finance using yfinance library***
+
 ```
 ##### Coding Task:
 --------------------------------------
-```
+
 The task is to retrieve the latest Microsoft (MSFT) stock price from Yahoo Finance using the yfinance library. The code defines a function `get_stock_price` that takes a stock ticker as input, fetches the historical data for the last day using `yfinance`, and returns the closing price. The `main` function calls `get_stock_price` with 'MSFT' as the ticker and prints the result. Error handling is included to catch potential exceptions during data retrieval.
-```
 
 ##### Generated Code:
 --------------------------------------
-```
+
 import yfinance as yf
 
 def get_stock_price(ticker):
@@ -74,10 +101,9 @@ def main():
 if __name__ == "__main__":
 	main()
 
-```
 --------------------------------------
 ##### Final Answer:
-```
+
 The latest stock price for MSFT is: ***388.61***
 ```
 
